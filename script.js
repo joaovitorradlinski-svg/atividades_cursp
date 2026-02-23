@@ -5,6 +5,12 @@ const cover = document.getElementById('cover');
 const play = document.getElementById('play');
 const next = document.getElementById('next');
 const prev = document.getElementById('previous');
+const currentprogress = document.getElementById('current-progress');
+const progresscontainer = document.getElementById('progress-container');
+const shuffle = document.getElementById('shuffle');
+const repeat = document.getElementById('repeat');
+
+
 
 
 const iwillsurvive ={
@@ -73,6 +79,26 @@ function nextsong(){
     playSong();
 }
 
+function updateprogressbar(){
+    song.duration
+    song.duration
+    const barwidth = (song.currentTime / song.duration) * 100;
+    currentprogress.style.setProperty = ('--progress', `${barwidth}%`)
+
+}
+
+
+function jumpto(event){
+    const width =progresscontainer.clientWidth
+    const clickposition = event.offsetX;
+    song.jumpToTime = (clickposition / width) * song.duration
+    song.currentTime = jumpToTime
+
+
+}
+
+
+
 loadSong();
 
 
@@ -86,4 +112,5 @@ play.addEventListener('click', () => {
 })
 prev.addEventListener('click', previoussong);
 next.addEventListener('click', nextsong);
-
+song.addEventListener('timeupdate', updateprogressbar);
+progresscontainer.addEventListener('click', jumpto);
