@@ -8,33 +8,33 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Spotfy viatnam</title>
   </head>
   <body>
     <div class="music-container">
-      <h4 id="playlist-title">Playlist</h4>
+      <h4 id="playlist-title" class="playlist-title"  >Playlist</h4>
       <img id="cover" alt="Disc-cover"></img>
       <audio id="audio"></audio>
-      <div id="bellow-cover">
-        <div id="song-info">
+      <div id="bellow-cover" class="bellow-cover">
+        <div id="song-info" class="song-info">
           <div id="song-name">nome da musica</div>
           <div id="band-name" class="light-color">nome da banda</div>
         </div>
         <button id="like" class="button light-color"><i class="bi bi-heart"></i></button>
       </div>
-      <div id="progress-container">
-        <div id="progress-bar" >
-          <div id="current-progress"></div>
+      <div id="progress-container" class="progress-container">
+        <div id="progress-bar" class="progress-bar">
+          <div id="current-progress" class="current-progress"></div>
         </div>
       </div>
-      <div id = "buttons-container">
+      <div id = "buttons-container" class="buttons-container">
         <button id="shuffle" class="button" ><i class="bi bi-shuffle"></i></button>
         <button id="previous" class="button button-navigate" ><i class="bi bi-skip-backward-fill"></i></button>
         <button id="play" class="button button-biggest" ><i class="bi bi-play-circle-fill"></i></button>
-        <button id="next" class="button button-navigate" ><i class="bi bi-skip-forward-fill"></i></button>
+        <button id="next" class="button button-navigate" ><i class="bi bi-skip-forward-fill"></i></button>  
         <button id="repeat" class="button" ><i class="bi bi-repeat"></i></button>
       </div>
     </div>
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
