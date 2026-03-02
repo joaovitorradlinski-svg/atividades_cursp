@@ -67,7 +67,7 @@ button{
 }
 
 .current-progress{
-    --progress:0%
+    --progress: 0%;
     background-color: white;
     height: inherit;
     width: var(--progress);

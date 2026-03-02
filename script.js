@@ -11,14 +11,16 @@ const shuffle = document.getElementById('shuffle');
 const repeat = document.getElementById('repeat');
 const currentTime = document.getElementById('current-time');
 const duration = document.getElementById('duration');
+const like = document.getElementById('like');
 
 
 
 
-const iwillsurvive ={
-    SongName: 'I Will Survive',
-    bandName: 'Gloria Gaynor',
-    file: 'Iwillsurvive',
+
+const Devilnevercry ={
+    SongName: 'devilnevercry',
+    bandName: 'devilnevercry',
+    file: 'dmc'
 }
 
 const lovethesubhumanself ={
@@ -36,7 +38,7 @@ const extra ={
 let isPlaying = false;
 let issnuffle =false;
 let isrepeat = false;
-const playlist =[extra, iwillsurvive, lovethesubhumanself]
+const playlist = JSON.parse(localStorage.getItem('playlist')) ?? [Devilnevercry, lovethesubhumanself, extra];
 let sortedplaylist = [...playlist]
 let index = 0;
 
@@ -85,10 +87,8 @@ function nextsong(){
 }
 
 function updateprogressbar(){
-    song.duration
-    song.duration
     const barwidth = (song.currentTime / song.duration) * 100;
-    currentprogress.style.setProperty = ('--progress', `${barwidth}%`)
+    currentprogress.style.setProperty('--progress', `${barwidth}%`);
 
 }
 
@@ -96,12 +96,8 @@ function updateprogressbar(){
 function jumpto(event){
     const width =progresscontainer.clientWidth;
     const clickposition = event.offsetX;
-    song.jumpToTime = (clickposition / width) * song.duration;
+    const jumpToTime = (clickposition / width) * song.duration;
     song.currentTime = jumpToTime;
-    song.currenttime=jumpToTime;
-    alert(song.currentTime);
-
-
 }
 
 function snufflearray(presnuffledarray){
@@ -135,10 +131,12 @@ function repeatbuttoncliked(){
     if(isrepeat === false){
         isrepeat = true
         repeat.classList.add('button-repeat')
+        song.loop = true
     }
     else{
         isrepeat = false
         repeat.classList.remove('button-repeat')
+        song.loop = false
     }
 }
 function nextorRepeat(){
@@ -149,14 +147,41 @@ function nextorRepeat(){
         pauseSong();
     }
 }
+
 function formatTime(time){
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds}`;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
 function updatetotaltime(){
     duration.innerText = formatTime(song.duration);
+}
+function updateCurrentTime(){
+    currentTime.innerText = formatTime(song.currentTime);
+}
+
+function likebuttonrender(){
+    if(sortedplaylist[index].like === true){
+    like.querySelector('.bi').classList.remove('bi-heart');
+    like.querySelector('.bi').classList.add('bi-heart-fill');
+    like.classList.add('button-like')
+    } else {
+        like.querySelector('.bi').classList.remove('bi-heart-fill');
+        like.querySelector('.bi').classList.add('bi-heart');
+        like.classList.remove('button-like')
+        like.classList.remove('button-like')
+    }
+}
+
+function likebuttoncliked(){
+    if(sortedplaylist[index].like === true){
+        sortedplaylist[index].like = false;
+    }else{
+        sortedplaylist[index].like = true;
+    }
+    likebuttonrender();
+    localStorage.setItem('playlist', JSON.stringify(playlist));
 }
 
 loadSong();
@@ -178,6 +203,8 @@ song.addEventListener('timeupdate', updateprogressbar);
 progresscontainer.addEventListener('click', jumpto);
 song.addEventListener('ended', nextorRepeat);
 song.addEventListener('loadedmetadata', updatetotaltime);
+song.addEventListener('timeupdate', updateCurrentTime);
 shuffle.addEventListener('click' ,shufflebuttoncliked
 )
 repeat.addEventListener('click', repeatbuttoncliked)
+like.addEventListener('click',likebuttoncliked);
