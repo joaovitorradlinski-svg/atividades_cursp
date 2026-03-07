@@ -11,32 +11,49 @@
     <title>Spotfy viatnam</title>
   </head>
   <body>
-    <div class="music-container">
-      <h4 id="playlist-title" class="playlist-title"  >Playlist</h4>
-      <img id="cover" alt="Disc-cover"></img>
+    <div class="music-container" id="music-container">
+      <div id="drop-overlay" class="drop-overlay">
+        Solte sua música aqui!
+      </div>
+      
+      <div class="player-header">
+        <button class="button"><i class="bi bi-chevron-down"></i></button>
+        <h4 id="playlist-title" class="playlist-title">Playing from Playlist</h4>
+        <button class="button"><i class="bi bi-three-dots"></i></button>
+      </div>
+
+      <div class="cover-wrapper">
+        <img id="cover" alt="Disc-cover"></img>
+      </div>
+      
       <audio id="audio"></audio>
+      
       <div id="bellow-cover" class="bellow-cover">
         <div id="song-info" class="song-info">
-          <div id="song-name">nome da musica</div>
-          <div id="band-name" class="light-color">nome da banda</div>
+          <div id="song-name" class="song-name">nome da musica</div>
+          <div id="band-name" class="band-name">nome da banda</div>
         </div>
-        <button id="like" class="button light-color"><i class="bi bi-heart"></i></button>
+        <button id="like" class="button button-like"><i class="bi bi-heart"></i></button>
       </div>
-      <div id="progress-container" class="progress-container">
-        <div id="progress-bar" class="progress-bar">
-          <div id="current-progress" class="current-progress"></div>
-          <div id="time-box" class="time-box">
-            <div id="current-time" class="current-time">0:00</div>
-            <div id="duration" class="duration">0:00</div>
+      
+      <div class="progress-section">
+        <div id="progress-container" class="progress-container">
+          <div id="progress-bar" class="progress-bar">
+            <div id="current-progress" class="current-progress" style="--progress: 0%;"></div>
           </div>
         </div>
+        <div id="time-box" class="time-box">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
       </div>
-      <div id = "buttons-container" class="buttons-container">
-        <button id="shuffle" class="button" ><i class="bi bi-shuffle"></i></button>
+      
+      <div id="buttons-container" class="buttons-container">
+        <button id="shuffle" class="button button-small" ><i class="bi bi-shuffle"></i></button>
         <button id="previous" class="button button-navigate" ><i class="bi bi-skip-backward-fill"></i></button>
         <button id="play" class="button button-biggest" ><i class="bi bi-play-circle-fill"></i></button>
         <button id="next" class="button button-navigate" ><i class="bi bi-skip-forward-fill"></i></button>  
-        <button id="repeat" class="button" ><i class="bi bi-repeat"></i></button>
+        <button id="repeat" class="button button-small" ><i class="bi bi-repeat"></i></button>
       </div>
     </div>
     <script src="script.js"></script>
